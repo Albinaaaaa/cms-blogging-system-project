@@ -25,20 +25,7 @@ include "includes/admin_header.php";
 
 						<div class="col-xs-6">
 							<?php
-							if (isset($_POST['submit'])) {
-								$catTitle = $_POST['cat_title'];
-
-								if ($catTitle == "" || empty($catTitle)) {
-									echo "THis field should not be empty";
-								} else {
-									$query = "INSERT INTO categories(cat_title) VALUE('{$catTitle}')";
-									$createCategoryQuery = $mysql->query($query);
-
-									if (!$createCategoryQuery) {
-										die("Query failed");
-									}
-								}
-							}
+							insertCategories();
 							?>
 							<form action="" method="post">
 								<div class="form-group">
@@ -50,7 +37,7 @@ include "includes/admin_header.php";
 								</div>
 							</form>
 
-							<?php
+							<?php //update and include
 							if (isset($_GET['edit'])) {
 								$catId = $_GET['edit'];
 								include "includes/update_categories.php";
@@ -68,29 +55,11 @@ include "includes/admin_header.php";
 								</thead>
 								<tbody>
 									<?php // Find all categories
-									$query = "SELECT * FROM categories";
-									global $mysql;
-									$selectCategoriesQuery = $mysql->query($query);
-									while ($row = $selectCategoriesQuery->fetch_assoc()) {
-										$catTitle = $row['cat_title'];
-										$catId = $row['cat_id'];
-										echo "<tr>";
-										echo "<td>{$catId}</td>";
-										echo "<td>{$catTitle}</td>";
-										echo "<td><a href='categories.php?delete={$catId}'>Delete</a></td>";
-										echo "<td><a href='categories.php?edit={$catId}'>Edit</a></td>";
-										echo "</tr>";
-									}
-
+									findAllCategories();
 									?>
 
 									<?php // Delete query
-									if (isset($_GET['delete'])) {
-										$theCatId = $_GET['delete'];
-										$query = "DELETE FROM categories WHERE cat_id = {$theCatId}";
-										$deleteQuery = $mysql->query($query);
-										header("Location: categories.php");
-									}
+									deleteCategory();
 									?>
 								</tbody>
 							</table>
