@@ -17,11 +17,31 @@ include "includes/header.php";
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-                <?php
-                $query = "SELECT * FROM posts";
-                $selectAllPostsQuery = $mysql->query($query);
 
-                while ($row = $selectAllPostsQuery->fetch_assoc()) {
+                <?php
+                if (isset($_POST['submit'])) {
+                    $search = $_POST['search'];
+                    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
+                    $searchQuery = $mysql->query($query);
+
+                    if (!$searchQuery) {
+                        die("Query failed");
+                    }
+
+                    $count = mysqli_num_rows($searchQuery);
+
+                    if ($count == 0) {
+                        echo "<h1>No result</h1>";
+                    } else {
+                        echo "<h1>Some result</h1>";
+                    }
+                }
+
+
+                // $query = "SELECT * FROM posts";
+                // $selectAllPostsQuery = $mysql->query($query);
+
+                while ($row = $searchQuery->fetch_assoc()) {
                     $postTitle = $row['post_title'];
                     $postTags = $row['post_tags'];
                     $postStatus = $row['post_status'];
