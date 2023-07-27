@@ -24,7 +24,23 @@ include "includes/admin_header.php";
 						</h1>
 
 						<div class="col-xs-6">
-							<form action="">
+							<?php
+							if (isset($_POST['submit'])) {
+								$catTitle = $_POST['cat_title'];
+
+								if ($catTitle == "" || empty($catTitle)) {
+									echo "THis field should not be empty";
+								} else {
+									$query = "INSERT INTO categories(cat_title) VALUE('{$catTitle}')";
+									$createCategoryQuery = $mysql->query($query);
+
+									if (!$createCategoryQuery) {
+										die("Query failed");
+									}
+								}
+							}
+							?>
+							<form action="" method="post">
 								<div class="form-group">
 									<label for="cat-title">Add Category</label>
 									<input type="text" class="form-control" id="cat-title" name="cat_title">
