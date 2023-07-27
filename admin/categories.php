@@ -49,6 +49,13 @@ include "includes/admin_header.php";
 									<input class="btn btn-primary" type="submit" name="submit" value="Add Category">
 								</div>
 							</form>
+
+							<?php
+							if (isset($_GET['edit'])) {
+								$catId = $_GET['edit'];
+								include "includes/update_categories.php";
+							}
+							?>
 						</div>
 
 						<div class="col-xs-6">
@@ -71,12 +78,13 @@ include "includes/admin_header.php";
 										echo "<td>{$catId}</td>";
 										echo "<td>{$catTitle}</td>";
 										echo "<td><a href='categories.php?delete={$catId}'>Delete</a></td>";
+										echo "<td><a href='categories.php?edit={$catId}'>Edit</a></td>";
 										echo "</tr>";
 									}
 
 									?>
 
-									<?php
+									<?php // Delete query
 									if (isset($_GET['delete'])) {
 										$theCatId = $_GET['delete'];
 										$query = "DELETE FROM categories WHERE cat_id = {$theCatId}";
