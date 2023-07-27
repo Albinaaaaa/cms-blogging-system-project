@@ -52,11 +52,6 @@ include "includes/admin_header.php";
 						</div>
 
 						<div class="col-xs-6">
-							<?php
-							$query = "SELECT * FROM categories";
-							global $mysql;
-							$selectCategoriesQuery = $mysql->query($query);
-							?>
 							<table class="table table-bordered table-hover">
 								<thead>
 									<tr>
@@ -65,16 +60,29 @@ include "includes/admin_header.php";
 									</tr>
 								</thead>
 								<tbody>
-									<?php
+									<?php // Find all categories
+									$query = "SELECT * FROM categories";
+									global $mysql;
+									$selectCategoriesQuery = $mysql->query($query);
 									while ($row = $selectCategoriesQuery->fetch_assoc()) {
 										$catTitle = $row['cat_title'];
 										$catId = $row['cat_id'];
 										echo "<tr>";
 										echo "<td>{$catId}</td>";
 										echo "<td>{$catTitle}</td>";
+										echo "<td><a href='categories.php?delete={$catId}'>Delete</a></td>";
 										echo "</tr>";
 									}
 
+									?>
+
+									<?php
+									if (isset($_GET['delete'])) {
+										$theCatId = $_GET['delete'];
+										$query = "DELETE FROM categories WHERE cat_id = {$theCatId}";
+										$deleteQuery = $mysql->query($query);
+										header("Location: categories.php");
+									}
 									?>
 								</tbody>
 							</table>
