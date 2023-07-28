@@ -34,6 +34,8 @@ include "includes/admin_header.php";
 							case 'add-post':
 								include "includes/add_post.php";
 								break;
+							case 'edit-post';
+								include "includes/edit_post.php";
 							default:
 								include "includes/view_all_posts.php";
 								break;
