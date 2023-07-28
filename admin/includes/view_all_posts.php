@@ -32,6 +32,10 @@ ob_start();
 			$postCommentCount = $row['post_comment_count'];
 			$postDate = $row['post_date'];
 
+			if (!str_contains($postImage, 'http')) {
+				$postImage = '../images/' . $postImage;
+			}
+
 			echo "<tr>";
 			echo "<td>$postId</td>";
 			echo "<td>$postAuthor</td>";
