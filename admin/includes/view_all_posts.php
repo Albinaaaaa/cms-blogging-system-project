@@ -42,6 +42,7 @@ ob_start();
 			echo "<td>$postTags</td>";
 			echo "<td>$postCommentCount</td>";
 			echo "<td>$postDate</td>";
+			echo "<td><a href='posts.php?source=edit-post&p-id={$postId}'>Edit</a></td>";
 			echo "<td><a href='posts.php?delete={$postId}'>Delete</a></td>";
 			echo "</tr>";
 		}
