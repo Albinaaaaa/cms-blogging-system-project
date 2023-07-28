@@ -1,3 +1,7 @@
+<?php
+ob_start();
+?>
+
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
@@ -13,6 +17,7 @@
 	</thead>
 	<tbody>
 		<?php
+
 		$query = "SELECT * FROM posts";
 		$selectPosts = $mysql->query($query);
 
@@ -37,8 +42,20 @@
 			echo "<td>$postTags</td>";
 			echo "<td>$postCommentCount</td>";
 			echo "<td>$postDate</td>";
+			echo "<td><a href='posts.php?delete={$postId}'>Delete</a></td>";
 			echo "</tr>";
 		}
 		?>
 	</tbody>
 </table>
+
+
+<?php
+if (isset($_GET['delete'])) {
+	$thePostId = $_GET['delete'];
+
+	$query = "DELETE FROM posts WHERE post_id = $thePostId";
+	$deleteQuery = $mysql->query($query);
+	header("Location: posts.php");
+}
+?>
