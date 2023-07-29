@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['create-post'])) {
 	$postTitle = $_POST['title'];
-	$postCatId = $_POST['post-category-id'];
+	$postCatId = $_POST['post-category'];
 	$postAuthor = $_POST['author'];
 	$postStatus = $_POST['post-status'];
 	$postImage = $_FILES['post-image']['name'];
@@ -31,8 +31,22 @@ if (isset($_POST['create-post'])) {
 	</div>
 
 	<div class="form-group">
-		<label for="post-category">Post category Id</label>
-		<input type="text" class="form-control" name="post-category-id" id="post-category">
+		<select name="post-category" id="post-category">
+			<?php
+			$query = "SELECT * FROM categories";
+			global $mysql;
+			$selectCategories = $mysql->query($query);
+			if (!$selectCategories) {
+				die("Query failed");
+			}
+			while ($row = $selectCategories->fetch_assoc()) {
+				$catTitle = $row['cat_title'];
+				$catId = $row['cat_id'];
+
+				echo "<option value='{$catId}'>{$catTitle}</option>";
+			}
+			?>
+		</select>
 	</div>
 
 	<div class="form-group">
