@@ -22,6 +22,7 @@ include "includes/header.php";
                 $selectAllPostsQuery = $mysql->query($query);
 
                 while ($row = $selectAllPostsQuery->fetch_assoc()) {
+                    $postId = $row['post_id'];
                     $postTitle = $row['post_title'];
                     $postTags = $row['post_tags'];
                     $postStatus = $row['post_status'];
@@ -39,7 +40,7 @@ include "includes/header.php";
 
                     <!-- First Blog Post -->
                     <h2>
-                        <a href="#"><?php echo $postTitle; ?></a>
+                        <a href="post.php?p-id=<?php echo $postId; ?>"><?php echo $postTitle; ?></a>
                     </h2>
                     <p class="lead">
                         by <a href="index.php"><?php echo $postAuthor; ?></a>

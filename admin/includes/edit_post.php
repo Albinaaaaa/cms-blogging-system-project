@@ -1,4 +1,5 @@
 <?php
+ob_start();
 
 if (isset($_GET['p-id'])) {
 	$thePostId = $_GET['p-id'];
@@ -60,6 +61,7 @@ if (isset($_POST['update-post'])) {
 	if (!$updatePostQuery) {
 		die("Query failed");
 	}
+	header("Location: posts.php");
 }
 ?>
 
@@ -101,7 +103,7 @@ if (isset($_POST['update-post'])) {
 
 	<div class="form-group">
 		<label for="post-image">Post image</label>
-		<img src="<?php echo $postImage; ?>" alt="Background image">
+		<img style="max-width: 150px;" src="<?php echo $postImage; ?>" alt="Background image">
 		<input type="file" name="post-image" id="post-image">
 	</div>
 
