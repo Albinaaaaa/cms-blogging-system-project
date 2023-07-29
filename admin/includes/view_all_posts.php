@@ -40,7 +40,17 @@ ob_start();
 			echo "<td>$postId</td>";
 			echo "<td>$postAuthor</td>";
 			echo "<td>$postTitle</td>";
-			echo "<td>$postCatId</td>";
+
+
+			$query = "SELECT * FROM categories WHERE cat_id = {$postCatId}";
+			$selectCatId = $mysql->query($query);
+
+			while ($row = $selectCatId->fetch_assoc()) {
+				$catId = $row['cat_id'];
+				$catTitle = $row['cat_title'];
+			}
+
+			echo "<td>$catTitle</td>";
 			echo "<td>$postStatus</td>";
 			echo "<td><img class='img-responsive' src='$postImage' alt='background image' style='max-width: 150px; width: 100%; margin: 0 auto;'/></td>";
 			echo "<td>$postTags</td>";
