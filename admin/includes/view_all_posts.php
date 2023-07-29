@@ -44,7 +44,7 @@ ob_start();
 			echo "<td>$postStatus</td>";
 			echo "<td><img class='img-responsive' src='$postImage' alt='background image' style='max-width: 150px; width: 100%; margin: 0 auto;'/></td>";
 			echo "<td>$postTags</td>";
-			echo "<td>$postCommentCount</td>";
+			// echo "<td>$postCommentCount</td>";
 			echo "<td>$postDate</td>";
 			echo "<td><a href='posts.php?source=edit-post&p-id={$postId}'>Edit</a></td>";
 			echo "<td><a href='posts.php?delete={$postId}'>Delete</a></td>";
