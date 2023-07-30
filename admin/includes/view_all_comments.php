@@ -53,17 +53,18 @@ ob_start();
 
 			$query = "SELECT * FROM posts WHERE post_id = $commentPostId";
 			$selectPostIdQuery = $mysql->query($query);
+
 			while ($row = $selectPostIdQuery->fetch_assoc()) {
 				$postId = $row['post_id'];
 				$postTitle = $row['post_title'];
-				echo "<td><a href='../post.php?p-id=$postId'>$postTitle</a></td>";
+				echo "<td><a href='../post.php?p-id={$postId}'>$postTitle</a></td>";
 			}
 
 			echo "<td>$commentDate</td>";
 			echo "<td><a href='posts.php?source=edit-post&p-id'>Approve</a></td>";
 			echo "<td><a href='posts.php?delete'>Unapprove</a></td>";
 			echo "<td><a href='posts.php?source=edit-post&p-id'>Edit</a></td>";
-			echo "<td><a href='posts.php?delete'>Delete</a></td>";
+			echo "<td><a href='comments.php?delete={$commentId}'>Delete</a></td>";
 			echo "</tr>";
 		}
 		?>
@@ -72,11 +73,18 @@ ob_start();
 
 
 <?php
-if (isset($_GET['delete'])) {
-	$thePostId = $_GET['delete'];
+// if (isset($_GET['delete'])) {
+// 	$thePostId = $_GET['delete'];
 
-	$query = "DELETE FROM posts WHERE post_id = $thePostId";
-	$deleteQuery = $mysql->query($query);
-	header("Location: posts.php");
+// 	$query = "DELETE FROM posts WHERE post_id = $thePostId";
+// 	$deleteQuery = $mysql->query($query);
+// 	header("Location: posts.php");
+// }
+
+if (isset($_GET['delete'])) {
+	$theCommentId = $_GET['delete'];
+	$query = "DELETE FROM comments WHERE comment_id = $theCommentId";
+	$deleteCommentQuery = $mysql->query($query);
+	header("Location: comments.php");
 }
 ?>
