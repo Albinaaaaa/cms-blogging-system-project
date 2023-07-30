@@ -49,9 +49,9 @@ ob_start();
 			// 	echo "<td><a href='../post.php?p-id={$postId}'>$postTitle</a></td>";
 			// }
 
-			echo "<td><a href='comments.php?approve='>Approve</a></td>";
-			echo "<td><a href='comments.php?unapprove='>Unapprove</a></td>";
-			echo "<td><a href='comments.php?delete='>Delete</a></td>";
+			echo "<td><a href='users.php?change-to-admin={$userId}'>Change to admin</a></td>";
+			echo "<td><a href='users.php?change-to-subscriber={$userId}'>Change to subscriber</a></td>";
+			echo "<td><a href='users.php?delete={$userId}'>Delete</a></td>";
 			echo "</tr>";
 		}
 		?>
@@ -61,24 +61,24 @@ ob_start();
 
 <?php
 
-if (isset($_GET['unapprove'])) {
-	$theCommentId = $_GET['unapprove'];
-	$query = "UPDATE comments SET comment_status = 'unapprove' WHERE comment_id = $theCommentId";
-	$setCommentUnapprovedStatusQuery = $mysql->query($query);
-	header("Location: comments.php");
+if (isset($_GET['change-to-admin'])) {
+	$theUserId = $_GET['change-to-admin'];
+	$query = "UPDATE users SET user_role = 'admin' WHERE user_id = $theUserId";
+	$setAdminQuery = $mysql->query($query);
+	header("Location: users.php");
 }
 
-if (isset($_GET['approve'])) {
-	$theCommentId = $_GET['approve'];
-	$query = "UPDATE comments SET comment_status = 'approve' WHERE comment_id = $theCommentId";
-	$setCommentApprovedStatusQuery = $mysql->query($query);
-	header("Location: comments.php");
+if (isset($_GET['change-to-subscriber'])) {
+	$theUserId = $_GET['change-to-subscriber'];
+	$query = "UPDATE users SET user_role = 'subscriber' WHERE user_id = $theUserId";
+	$setSubscriberQuery = $mysql->query($query);
+	header("Location: users.php");
 }
 
 if (isset($_GET['delete'])) {
-	$theCommentId = $_GET['delete'];
-	$query = "DELETE FROM comments WHERE comment_id = $theCommentId";
-	$deleteCommentQuery = $mysql->query($query);
-	header("Location: comments.php");
+	$theUserId = $_GET['delete'];
+	$query = "DELETE FROM users WHERE user_id = $theUserId";
+	$deleteUserQuery = $mysql->query($query);
+	header("Location: users.php");
 }
 ?>

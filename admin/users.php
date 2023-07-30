@@ -31,10 +31,10 @@ include "includes/admin_header.php";
 						}
 
 						switch ($source) {
-							case 'add-post':
+							case 'add-user':
 								include "includes/add_user.php";
 								break;
-							case 'edit-post';
+							case 'edit-user';
 								include "includes/edit_user.php";
 							default:
 								include "includes/view_all_users.php";
