@@ -69,15 +69,30 @@ include "includes/header.php";
                     ?>
 
                     <!-- Blog Comments -->
+                    <?php
+                    if (isset($_POST['create-comment'])) {
+                        $author = $_POST['comment-author'];
+                        echo $author;
+                    }
+                    ?>
 
                     <!-- Comments Form -->
                     <div class="well">
                         <h4>Leave a Comment:</h4>
-                        <form role="form">
+                        <form action="" method="post" role="form">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <label for="author">Author</label>
+                                <input type="text" class="form-control" name="comment-author" id="author">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="comment-email" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Your comment</label>
+                                <textarea class="form-control" rows="3" id="comment" name="comment-content"></textarea>
+                            </div>
+                            <button type="submit" name="create-comment" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
 
