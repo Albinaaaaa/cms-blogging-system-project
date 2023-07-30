@@ -14,7 +14,6 @@ ob_start();
 			<th>Date</th>
 			<th>Approve</th>
 			<th>Unapprove</th>
-			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -63,7 +62,6 @@ ob_start();
 			echo "<td>$commentDate</td>";
 			echo "<td><a href='comments.php?approve={$commentId}'>Approve</a></td>";
 			echo "<td><a href='comments.php?unapprove={$commentId}'>Unapprove</a></td>";
-			echo "<td><a href='posts.php?source=edit-post&p-id'>Edit</a></td>";
 			echo "<td><a href='comments.php?delete={$commentId}'>Delete</a></td>";
 			echo "</tr>";
 		}
