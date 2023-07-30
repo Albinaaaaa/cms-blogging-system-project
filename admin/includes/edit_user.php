@@ -19,28 +19,32 @@ if (isset($_GET['edit-user'])) {
 	}
 }
 
-// if (isset($_POST['edit-user'])) {
-// 	// $userId = $_POST['user-id'];
-// 	$userFirstname = $_POST['user-firtsname'];
-// 	$userLastname = $_POST['user-lastname'];
-// 	$username = $_POST['username'];
-// 	$userEmail = $_POST['user-email'];
-// 	// $postImage = $_FILES['post-image']['name'];
-// 	// $postImageTemp = $_FILES['post-image']['tmp_name'];
-// 	$userPassword = $_POST['user-password'];
-// 	$userRole = $_POST['user-role'];
-// 	// $postDate = date('d-m-y');
-// 	// $postCommentCount = 4;
+if (isset($_POST['edit-user'])) {
+	$userFirstname = $_POST['user-firtsname'];
+	$userLastname = $_POST['user-lastname'];
+	$userRole = $_POST['user-role'];
+	$username = $_POST['username'];
+	$userEmail = $_POST['user-email'];
+	$userPassword = $_POST['user-password'];
 
-// 	// move_uploaded_file($postImageTemp, "../images/$postImage");
 
-// 	$query = "INSERT INTO users(user_firstname, user_lastname, username, user_email, user_password, user_role) VALUES('{$userFirstname}', '{$userLastname}', '{$username}', '{$userEmail}', '{$userPassword}', '{$userRole}')";
+	$query = "UPDATE users SET ";
+	$query .= "user_firstname = '{$userFirstname}', ";
+	$query .= "user_lastname = '{$userLastname}', ";
+	$query .= "user_role = '{$userRole}', ";
+	$query .= "username = '{$username}', ";
+	$query .= "user_email = '{$userEmail}', ";
+	$query .= "user_password = '{$userPassword}' ";
+	$query .= "WHERE user_id = {$theUserId}";
 
-// 	$addUserQuery = $mysql->query($query);
-// 	if (!$addUserQuery) {
-// 		die("Query failed");
-// 	}
-// }
+	$editUserQuery = $mysql->query($query);
+
+	if (!$editUserQuery) {
+		die("Query failed");
+	}
+	header("Location: users.php");
+}
+
 ?>
 
 
@@ -74,8 +78,8 @@ if (isset($_GET['edit-user'])) {
 	</div> -->
 
 	<div class="form-group">
-		<label for="Username">Username</label>
-		<input type="text" name="username" id="Username" value="<?php echo $username; ?>">
+		<label for="username">Username</label>
+		<input type="text" name="username" id="username" value="<?php echo $username; ?>">
 	</div>
 
 	<div class=" form-group">
