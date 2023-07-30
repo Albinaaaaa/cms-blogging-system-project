@@ -6,15 +6,12 @@ ob_start();
 	<thead>
 		<tr>
 			<th>Id</th>
-			<th>Author</th>
-			<th>Comment</th>
+			<th>Username</th>
+			<th>First name</th>
+			<th>Last name</th>
 			<th>Email</th>
-			<th>Status</th>
-			<th>In response to</th>
+			<th>Role</th>
 			<th>Date</th>
-			<th>Approve</th>
-			<th>Unapprove</th>
-			<th>Delete</th>
 		</tr>
 	</thead>
 	<tbody>
