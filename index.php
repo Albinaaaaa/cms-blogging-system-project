@@ -18,7 +18,7 @@ include "includes/header.php";
             <!-- Blog Entries Column -->
             <div class="col-md-8">
                 <?php
-                $query = "SELECT * FROM posts";
+                $query = "SELECT * FROM posts ";
                 $selectAllPostsQuery = $mysql->query($query);
 
                 while ($row = $selectAllPostsQuery->fetch_assoc()) {
@@ -30,37 +30,47 @@ include "includes/header.php";
                     $postDate = $row['post_date'];
                     $postImage = $row['post_image'];
                     $postContent = substr($row['post_content'], 0, 100) . '...';
+                    $postDate = $row['post_date'];
+                    $postStatus = $row['post_status'];
 
+                    if ($postStatus !== 'published') {
+                        // echo "<h1>No posts here</h1>";
+                    } else {
                 ?>
+                        <!-- First Blog Post -->
+                        <h2>
+                            <a href="post.php?p-id=<?php echo $postId; ?>"><?php echo $postTitle; ?></a>
+                        </h2>
+                        <p class="lead">
+                            by <a href="index.php"><?php echo $postAuthor; ?></a>
+                        </p>
+                        <p><span class="glyphicon glyphicon-time"></span> <?php echo $postDate; ?></p>
+                        <hr>
+                        <img class="img-responsive" src="<?php if (str_contains($postImage, 'http')) {
+                                                                echo $postImage;
+                                                            } else {
+                                                                echo 'images/' . $postImage;
+                                                            } ?>" alt="Background image">
+                        <hr>
+                        <p><?php echo $postContent; ?></p>
+                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-                    <h1 class="page-header">
-                        Page Heading
-                        <small>Secondary Text</small>
-                    </h1>
+                        <hr>
+                    <?php
+                    }
 
-                    <!-- First Blog Post -->
-                    <h2>
-                        <a href="post.php?p-id=<?php echo $postId; ?>"><?php echo $postTitle; ?></a>
-                    </h2>
-                    <p class="lead">
-                        by <a href="index.php"><?php echo $postAuthor; ?></a>
-                    </p>
-                    <p><span class="glyphicon glyphicon-time"></span> <?php echo $postDate; ?></p>
-                    <hr>
-                    <img class="img-responsive" src="<?php if (str_contains($postImage, 'http')) {
-                                                            echo $postImage;
-                                                        } else {
-                                                            echo 'images/' . $postImage;
-                                                        } ?>" alt="Background image">
-                    <hr>
-                    <p><?php echo $postContent; ?></p>
-                    <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    ?>
 
-                    <hr>
+
+
 
                 <?php
                 }
                 ?>
+                <h1 class="page-header">
+                    Page Heading
+                    <small>Secondary Text</small>
+                </h1>
 
 
 
