@@ -50,7 +50,15 @@ ob_start();
 			// echo "<td>$catTitle</td>";
 			echo "<td>$commentEmail</td>";
 			echo "<td>$commentStatus</td>";
-			echo "<td>$commentPostId</td>";
+
+			$query = "SELECT * FROM posts WHERE post_id = $commentPostId";
+			$selectPostIdQuery = $mysql->query($query);
+			while ($row = $selectPostIdQuery->fetch_assoc()) {
+				$postId = $row['post_id'];
+				$postTitle = $row['post_title'];
+				echo "<td><a href='../post.php?p-id=$postId'>$postTitle</a></td>";
+			}
+
 			echo "<td>$commentDate</td>";
 			echo "<td><a href='posts.php?source=edit-post&p-id'>Approve</a></td>";
 			echo "<td><a href='posts.php?delete'>Unapprove</a></td>";
