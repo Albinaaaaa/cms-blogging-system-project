@@ -51,6 +51,7 @@ ob_start();
 
 			echo "<td><a href='users.php?change-to-admin={$userId}'>Change to admin</a></td>";
 			echo "<td><a href='users.php?change-to-subscriber={$userId}'>Change to subscriber</a></td>";
+			echo "<td><a href='users.php?source=edit-user&edit-user={$userId}'>Edit</a></td>";
 			echo "<td><a href='users.php?delete={$userId}'>Delete</a></td>";
 			echo "</tr>";
 		}
