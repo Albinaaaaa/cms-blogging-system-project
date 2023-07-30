@@ -17,49 +17,41 @@ ob_start();
 	<tbody>
 		<?php
 
-		$query = "SELECT * FROM comments";
-		$selectComments = $mysql->query($query);
+		$query = "SELECT * FROM users";
+		$selectUsersQuery = $mysql->query($query);
 
-		while ($row = $selectComments->fetch_assoc()) {
-			$commentId = $row['comment_id'];
-			$commentPostId = $row['comment_post_id'];
-			$commentAuthor = $row['comment_author'];
-			$commentEmail = $row['comment_email'];
-			$commentContent = $row['comment_content'];
-			$commentStatus = $row['comment_status'];
-			$commentDate = $row['comment_date'];
+		while ($row = $selectUsersQuery->fetch_assoc()) {
+			$userId = $row['user_id'];
+			$username = $row['username'];
+			$userPassword = $row['user_password'];
+			$userFirstname = $row['user_firstname'];
+			$userLastname = $row['user_lastname'];
+			$userEmail = $row['user_email'];
+			$userImage = $row['user_image'];
+			$userRole = $row['user_role'];
+			$randSalt = $row['randSalt'];
 
 			echo "<tr>";
-			echo "<td>$commentId</td>";
-			echo "<td>$commentAuthor</td>";
-			echo "<td>$commentContent</td>";
+			echo "<td>$userId</td>";
+			echo "<td>$username</td>";
+			echo "<td>$userFirstname</td>";;
+			echo "<td>$userLastname</td>";
+			echo "<td>$userEmail</td>";
+			echo "<td>$userRole</td>";
+			echo "<td>Date</td>";
 
+			// $query = "SELECT * FROM posts WHERE post_id = $commentPostId";
+			// $selectPostIdQuery = $mysql->query($query);
 
-			// $query = "SELECT * FROM categories WHERE cat_id = {$postCatId}";
-			// $selectCatId = $mysql->query($query);
-
-			// while ($row = $selectCatId->fetch_assoc()) {
-			// 	$catId = $row['cat_id'];
-			// 	$catTitle = $row['cat_title'];
+			// while ($row = $selectPostIdQuery->fetch_assoc()) {
+			// 	$postId = $row['post_id'];
+			// 	$postTitle = $row['post_title'];
+			// 	echo "<td><a href='../post.php?p-id={$postId}'>$postTitle</a></td>";
 			// }
 
-			// echo "<td>$catTitle</td>";
-			echo "<td>$commentEmail</td>";
-			echo "<td>$commentStatus</td>";
-
-			$query = "SELECT * FROM posts WHERE post_id = $commentPostId";
-			$selectPostIdQuery = $mysql->query($query);
-
-			while ($row = $selectPostIdQuery->fetch_assoc()) {
-				$postId = $row['post_id'];
-				$postTitle = $row['post_title'];
-				echo "<td><a href='../post.php?p-id={$postId}'>$postTitle</a></td>";
-			}
-
-			echo "<td>$commentDate</td>";
-			echo "<td><a href='comments.php?approve={$commentId}'>Approve</a></td>";
-			echo "<td><a href='comments.php?unapprove={$commentId}'>Unapprove</a></td>";
-			echo "<td><a href='comments.php?delete={$commentId}'>Delete</a></td>";
+			echo "<td><a href='comments.php?approve='>Approve</a></td>";
+			echo "<td><a href='comments.php?unapprove='>Unapprove</a></td>";
+			echo "<td><a href='comments.php?delete='>Delete</a></td>";
 			echo "</tr>";
 		}
 		?>
