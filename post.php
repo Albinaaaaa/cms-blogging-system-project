@@ -71,8 +71,12 @@ include "includes/header.php";
                     <!-- Blog Comments -->
                     <?php
                     if (isset($_POST['create-comment'])) {
-                        $author = $_POST['comment-author'];
-                        echo $author;
+                        $thePostId = $GET['p-id'];
+                        $commentAuthor = $_POST['comment-author'];
+                        $commentEmail = $_POST['comment-email'];
+                        $commentContent = $_POST['comment-content'];
+
+                        $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ($thePostId, '{$commentAuthor}', '{$commentEmail}', '{$commentContent}', 'unapproved', now())";
                     }
                     ?>
 
