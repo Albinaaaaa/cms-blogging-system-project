@@ -9,11 +9,11 @@ if (isset($_POST['create-post'])) {
 	$postTags = $_POST['post-tags'];
 	$postContent = $_POST['post-content'];
 	$postDate = date('d-m-y');
-	$postCommentCount = 4;
+	// $postCommentCount = 4;
 
 	move_uploaded_file($postImageTemp, "../images/$postImage");
 
-	$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES('{$postCatId}', '{$postTitle}', '{$postAuthor}', now(), '{$postImage}', '{$postContent}', '{$postTags}', '{$postCommentCount}', '{$postStatus}')";
+	$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES('{$postCatId}', '{$postTitle}', '{$postAuthor}', now(), '{$postImage}', '{$postContent}', '{$postTags}', '{$postStatus}')";
 
 	$createPostQuery = $mysql->query($query);
 	if (!$createPostQuery) {

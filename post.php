@@ -82,6 +82,9 @@ include "includes/header.php";
                         if (!$createCommentQuery) {
                             die("Query failed");
                         }
+
+                        $query = "UPDATE posts SET post_comment_count  = post_comment_count + 1 WHERE post_id = $thePostId";
+                        $updateCommentCount = $mysql->query($query);
                     }
                     ?>
 
