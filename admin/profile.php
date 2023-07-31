@@ -2,7 +2,25 @@
 include "includes/admin_header.php";
 
 if (isset($_SESSION['username'])) {
-	echo $_SESSION['username'];
+	$username = $_SESSION['username'];
+	$query = "SELECT * FROM users WHERE username = '{$username}'";
+	$selectUserProfile = $mysql->query($query);
+
+	if (!$selectUserProfile) {
+		die("Query failed");
+	}
+
+	while ($row = $selectUserProfile->fetch_array()) {
+		$userId = $row['user_id'];
+		$username = $row['username'];
+		$userPassword = $row['user_password'];
+		$userFirstname = $row['user_firstname'];
+		$userLastname = $row['user_lastname'];
+		$userEmail = $row['user_email'];
+		$userImage = $row['user_image'];
+		$userRole = $row['user_role'];
+		$randSalt = $row['randSalt'];
+	}
 }
 ?>
 
@@ -67,27 +85,24 @@ if (isset($_SESSION['username'])) {
 							</div>
 
 							<div class="form-group">
-								<input type="submit" name="edit-user" class="btn btn-primary" value="Edit user">
+								<input type="submit" name="edit-user" class="btn btn-primary" value="Update profile" </form>
+
 							</div>
-
-						</form>
-
 					</div>
+					<!-- /.row -->
+
 				</div>
-				<!-- /.row -->
+				<!-- /.container-fluid -->
 
 			</div>
-			<!-- /.container-fluid -->
+			<!-- /#page-wrapper -->
 
 		</div>
-		<!-- /#page-wrapper -->
+		<!-- /#wrapper -->
 
-	</div>
-	<!-- /#wrapper -->
-
-	<?php
-	include "includes/admin_footer.php";
-	?>
+		<?php
+		include "includes/admin_footer.php";
+		?>
 
 </body>
 
