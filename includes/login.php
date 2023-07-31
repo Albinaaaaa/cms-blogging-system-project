@@ -20,9 +20,20 @@ if (isset($_POST['login'])) {
 	}
 
 	while ($row = $selectUserQuery->fetch_array()) {
-		$dbId = $row['user_id'];
+		$dbUserId = $row['user_id'];
+		$dbUsername = $row['username'];
+		$dbUserPassword = $row['user_password'];
+		$dbUserFirsname = $row['user_firstname'];
+		$dbUserLastname = $row['user_lastname'];
+		$dbUserRole = $row['user_role'];
+	}
 
-		echo $dbId;
+	if ($username !== $dbUsername && $password !== $dbUserPassword) {
+		header("Location: ../index.php");
+	} else if ($username === $dbUsername && $password === $dbUserPassword) {
+		header("Location: ../admin");
+	} else {
+		header("Location: ../index.php");
 	}
 }
 ?>
