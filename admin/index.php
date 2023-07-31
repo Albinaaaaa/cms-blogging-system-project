@@ -40,7 +40,13 @@ include "includes/admin_header.php";
                                         <i class="fa fa-file-text fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class='huge'>12</div>
+                                        <?php
+                                        $query = "SELECT * FROM posts";
+                                        $selectAllPosts = $mysql->query($query);
+                                        $postCount = $selectAllPosts->num_rows;
+
+                                        echo "<div class='huge'>$postCount</div>";
+                                        ?>
                                         <div>Posts</div>
                                     </div>
                                 </div>
@@ -62,7 +68,13 @@ include "includes/admin_header.php";
                                         <i class="fa fa-comments fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class='huge'>23</div>
+                                        <?php
+                                        $query = "SELECT * FROM comments";
+                                        $selectAllComments = $mysql->query($query);
+                                        $commentsCount = $selectAllComments->num_rows;
+
+                                        echo "<div class='huge'>$commentsCount</div>";
+                                        ?>
                                         <div>Comments</div>
                                     </div>
                                 </div>
@@ -84,7 +96,13 @@ include "includes/admin_header.php";
                                         <i class="fa fa-user fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class='huge'>23</div>
+                                        <?php
+                                        $query = "SELECT * FROM users";
+                                        $selectAllUsers = $mysql->query($query);
+                                        $usersCount = $selectAllUsers->num_rows;
+
+                                        echo "<div class='huge'>$usersCount</div>";
+                                        ?>
                                         <div> Users</div>
                                     </div>
                                 </div>
@@ -106,7 +124,13 @@ include "includes/admin_header.php";
                                         <i class="fa fa-list fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class='huge'>13</div>
+                                        <?php
+                                        $query = "SELECT * FROM categories";
+                                        $selectAllCategories = $mysql->query($query);
+                                        $categoriesCount = $selectAllCategories->num_rows;
+
+                                        echo "<div class='huge'>$categoriesCount</div>";
+                                        ?>
                                         <div>Categories</div>
                                     </div>
                                 </div>
