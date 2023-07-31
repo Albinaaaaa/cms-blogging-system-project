@@ -71,12 +71,6 @@ if (isset($_POST['edit-user'])) {
 		</select>
 	</div>
 
-
-	<!-- <div class="form-group">
-		<label for="status">Post status</label>
-		<input type="text" class="form-control" name="post-status" id="status">
-	</div> -->
-
 	<div class="form-group">
 		<label for="username">Username</label>
 		<input type="text" name="username" id="username" value="<?php echo $username; ?>">
