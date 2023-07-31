@@ -24,6 +24,37 @@ if (isset($_SESSION['username'])) {
 }
 ?>
 
+<?php
+
+if (isset($_POST['update-user'])) {
+	$userFirstname = $_POST['user-firtsname'];
+	$userLastname = $_POST['user-lastname'];
+	$userRole = $_POST['user-role'];
+	$usernameForm = $_POST['username'];
+	$userEmail = $_POST['user-email'];
+	$userPassword = $_POST['user-password'];
+
+
+	$query = "UPDATE users SET ";
+	$query .= "user_firstname = '{$userFirstname}', ";
+	$query .= "user_lastname = '{$userLastname}', ";
+	$query .= "user_role = '{$userRole}', ";
+	$query .= "username = '{$usernameForm}', ";
+	$query .= "user_email = '{$userEmail}', ";
+	$query .= "user_password = '{$userPassword}' ";
+	$query .= "WHERE username = '{$username}'";
+
+	$editUserQuery = $mysql->query($query);
+
+	if (!$editUserQuery) {
+		die("Query failed");
+	}
+	// header("Location: profile.php");
+}
+
+
+?>
+
 <body>
 
 	<div id="wrapper">
@@ -85,7 +116,7 @@ if (isset($_SESSION['username'])) {
 							</div>
 
 							<div class="form-group">
-								<input type="submit" name="edit-user" class="btn btn-primary" value="Update profile" </form>
+								<input type="submit" name="update-user" class="btn btn-primary" value="Update profile">
 
 							</div>
 					</div>
