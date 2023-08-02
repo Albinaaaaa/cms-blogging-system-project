@@ -147,30 +147,52 @@ include "includes/admin_header.php";
                 </div>
                 <!-- /.row -->
 
+                <?php
+                $query = "SELECT * FROM posts WHERE post_status = 'draft'";
+                $selectAllDraftPosts = $mysql->query($query);
+                $postsDraftCount = $selectAllDraftPosts->num_rows;
+
+                $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
+                $selectAllUnapprovedComments = $mysql->query($query);
+                $commentsUnapprovedCount = $selectAllUnapprovedComments->num_rows;
+
+                $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
+                $selectAllUserSubscriber = $mysql->query($query);
+                $usersSubscriberCount = $selectAllUserSubscriber->num_rows;
+                ?>
+
                 <div class="row">
-                    <script>
+                    <script type="text/javascript">
                         google.charts.load('current', {
-                            packages: ['corechart']
+                            'packages': ['bar']
                         });
                         google.charts.setOnLoadCallback(drawChart);
 
                         function drawChart() {
-                            // Define the chart to be drawn.
-                            var data = new google.visualization.DataTable();
-                            data.addColumn('string', 'Element');
-                            data.addColumn('number', 'Percentage');
-                            data.addRows([
-                                ['Nitrogen', 0.78],
-                                ['Oxygen', 0.21],
-                                ['Other', 0.01]
+                            var data = google.visualization.arrayToDataTable([
+                                ['Data', 'Count'],
+                                <?php
+                                $elementText = ['Active posts', 'Draft posts', 'Comments', 'Pending comments', 'Users', 'Subscribers', 'Categories'];
+                                $elementCount = [$postCount, $postsDraftCount, $commentsCount, $commentsUnapprovedCount, $usersCount, $usersSubscriberCount, $categoriesCount];
+                                for ($i = 0; $i < 7; $i++) {
+                                    echo "['{$elementText[$i]}'" . " ," . "{$elementCount[$i]}],";
+                                }
+                                ?>
                             ]);
 
-                            // Instantiate and draw the chart.
-                            var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
-                            chart.draw(data, null);
+                            var options = {
+                                chart: {
+                                    title: '',
+                                    subtitle: '',
+                                }
+                            };
+
+                            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                            chart.draw(data, google.charts.Bar.convertOptions(options));
                         }
                     </script>
-                    <div id="myPieChart" />
+                    <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
                 </div>
 
             </div>

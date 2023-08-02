@@ -33,7 +33,7 @@ include "includes/header.php";
                     $postDate = $row['post_date'];
                     $postStatus = $row['post_status'];
 
-                    if ($postStatus !== 'published') {
+                    if ($postStatus == 'published') {
                         // echo "<h1>No posts here</h1>";
                     } else {
                 ?>
@@ -67,10 +67,10 @@ include "includes/header.php";
                 <?php
                 }
                 ?>
-                <h1 class="page-header">
+                <!-- <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
-                </h1>
+                </h1> -->
 
 
 
