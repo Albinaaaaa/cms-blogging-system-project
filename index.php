@@ -34,8 +34,6 @@ include "includes/header.php";
                     $postStatus = $row['post_status'];
 
                     if ($postStatus == 'published') {
-                        // echo "<h1>No posts here</h1>";
-                    } else {
                 ?>
                         <!-- First Blog Post -->
                         <h2>
@@ -57,6 +55,8 @@ include "includes/header.php";
 
                         <hr>
                     <?php
+                    } else {
+                        // echo "<h1>No posts here</h1>";
                     }
 
                     ?>

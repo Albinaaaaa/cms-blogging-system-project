@@ -111,11 +111,6 @@ if (isset($_POST['update-post'])) {
 		</select>
 	</div>
 
-	<!-- <div class="form-group">
-		<label for="status">Post status</label>
-		<input type="text" value="<?php echo $postStatus; ?>" class="form-control" name="post-status" id="status">
-	</div> -->
-
 	<div class="form-group">
 		<label for="post-image">Post image</label>
 		<img style="max-width: 150px;" src="<?php echo $postImage; ?>" alt="Background image">
@@ -129,7 +124,7 @@ if (isset($_POST['update-post'])) {
 
 	<div class="form-group">
 		<label for="post-content">Post content</label>
-		<textarea name="post-content" id="post-content" cols="30" rows="10"><?php echo $postContent; ?></textarea>
+		<textarea name="post-content" id="summernote" cols="30" rows="10"><?php echo $postContent; ?></textarea>
 	</div>
 
 	<div class="form-group">
