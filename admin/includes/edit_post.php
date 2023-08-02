@@ -61,7 +61,10 @@ if (isset($_POST['update-post'])) {
 	if (!$updatePostQuery) {
 		die("Query failed");
 	}
-	header("Location: posts.php");
+
+	echo "<p class='bg-success'>Post updated. <a href='posts.php'>All posts</a></p>";
+
+	// header("Location: posts.php");
 }
 ?>
 
@@ -98,7 +101,7 @@ if (isset($_POST['update-post'])) {
 
 	<div class="form-group">
 		<select name="post-status" id="">
-			<option value=""><?php echo $postStatus; ?></option>
+			<option value="<?php echo $postStatus; ?>"><?php echo $postStatus; ?></option>
 
 			<?php
 			if ($postStatus == 'published') {
