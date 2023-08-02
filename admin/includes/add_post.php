@@ -19,6 +19,8 @@ if (isset($_POST['create-post'])) {
 	if (!$createPostQuery) {
 		die("Query failed");
 	}
+
+	echo "Post created. <a href='posts.php'>View all posts</a>";
 }
 ?>
 
@@ -56,7 +58,11 @@ if (isset($_POST['create-post'])) {
 
 	<div class="form-group">
 		<label for="status">Post status</label>
-		<input type="text" class="form-control" name="post-status" id="status">
+		<select name="post-status" id="">
+			<option value="draft">Post status</option>
+			<option value="published">Published</option>
+			<option value="draft">Draft</option>
+		</select>
 	</div>
 
 	<div class="form-group">
