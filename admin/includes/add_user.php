@@ -20,6 +20,8 @@ if (isset($_POST['add-user'])) {
 	if (!$addUserQuery) {
 		die("Query failed");
 	}
+
+	echo "User created" . " " . "<a href='users.php'>View users</a>";
 }
 ?>
 
