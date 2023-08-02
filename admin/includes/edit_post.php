@@ -97,9 +97,24 @@ if (isset($_POST['update-post'])) {
 	</div>
 
 	<div class="form-group">
+		<select name="post-status" id="">
+			<option value=""><?php echo $postStatus; ?></option>
+
+			<?php
+			if ($postStatus == 'published') {
+				echo "<option value='draft'>Draft</option>";
+			} else {
+				echo "<option value='published'>Published</option>";
+			}
+
+			?>
+		</select>
+	</div>
+
+	<!-- <div class="form-group">
 		<label for="status">Post status</label>
 		<input type="text" value="<?php echo $postStatus; ?>" class="form-control" name="post-status" id="status">
-	</div>
+	</div> -->
 
 	<div class="form-group">
 		<label for="post-image">Post image</label>
