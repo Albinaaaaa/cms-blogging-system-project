@@ -73,16 +73,19 @@ include "includes/header.php";
                         $commentAuthor = $_POST['comment-author'];
                         $commentEmail = $_POST['comment-email'];
                         $commentContent = $_POST['comment-content'];
+                        if (!empty($commentAuthor) && !empty($commentEmail) && !empty($commentContent)) {
+                            $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ($thePostId, '{$commentAuthor}', '{$commentEmail}', '{$commentContent}', 'unapproved', now())";
 
-                        $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ($thePostId, '{$commentAuthor}', '{$commentEmail}', '{$commentContent}', 'unapproved', now())";
+                            $createCommentQuery = $mysql->query($query);
+                            if (!$createCommentQuery) {
+                                die("Query failed");
+                            }
 
-                        $createCommentQuery = $mysql->query($query);
-                        if (!$createCommentQuery) {
-                            die("Query failed");
+                            $query = "UPDATE posts SET post_comment_count  = post_comment_count + 1 WHERE post_id = $thePostId";
+                            $updateCommentCount = $mysql->query($query);
+                        } else {
+                            echo "<script>alert('Fields can't be empty');</script>";
                         }
-
-                        $query = "UPDATE posts SET post_comment_count  = post_comment_count + 1 WHERE post_id = $thePostId";
-                        $updateCommentCount = $mysql->query($query);
                     }
                     ?>
 
